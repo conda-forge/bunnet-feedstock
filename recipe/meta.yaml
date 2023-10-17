@@ -23,7 +23,7 @@ requirements:
     - pip
   run:
     - python >=3.7
-    - pydantic >=1.9.0
+    - pydantic >=1.9.0,<2
     - pymongo
     - lazy-model >=0.0.3
     - click >=7
