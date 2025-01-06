@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bunnet-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/bunnet-{{ version }}.tar.gz
   sha256: 5e4aeee9c30ac7fe3968ad057398349d8c3fb886c5b568980266fc4e061c3a8f
 
 build:
@@ -14,11 +14,11 @@ build:
     - bunnet = bunnet.executors.migrate:migrations
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - flit-core
     - pip
   run:
@@ -26,7 +26,7 @@ requirements:
     - lazy-model >=0.2.0
     - pydantic >=1.10.0,<3
     - pymongo >=3
-    - python >=3.7
+    - python >={{ python_min }}
     - toml
 
 test:
@@ -37,6 +37,7 @@ test:
     - bunnet --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/roman-right/bunnet
